@@ -1,0 +1,9 @@
+# ⚠️ This is a placeholder file
+
+Students should copy actual workflow files from the helper folders:
+
+- **Level 1**: Copy `level-1/helper/.github/workflows/docker-build.yml` to this directory
+
+This file ensures the `.github/workflows/` directory is tracked in Git.
+
+After copying the workflow file, you can delete this placeholder.

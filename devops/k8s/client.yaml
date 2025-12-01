@@ -19,6 +19,12 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+        env:
+        - name: VITE_API_URL
+          valueFrom:
+            configMapKeyRef:
+              name: client-config
+              key: API_URL # We need to ensure this key exists in the ConfigMap!
         volumeMounts:
         - name: config-volume
           mountPath: /usr/share/nginx/html/config.js

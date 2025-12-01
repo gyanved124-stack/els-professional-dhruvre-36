@@ -1,5 +1,5 @@
 # Stage 1: Build the React application
-FROM ghcr.io/library/node:20-alpine
+FROM mirror.gcr.io/library/node:20-alpine AS build
 
 WORKDIR /app
 

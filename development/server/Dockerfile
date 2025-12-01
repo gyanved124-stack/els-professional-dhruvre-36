@@ -1,4 +1,4 @@
-FROM mirror.gcr.io/library/node:20-alpine AS build
+FROM ghcr.io/library/node:20-alpine
 
 RUN apt-get update && apt-get install -y \
     python3 \

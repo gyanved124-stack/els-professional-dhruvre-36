@@ -1,5 +1,6 @@
 # Stage 1: Build the React application
-FROM mirror.gcr.io/library/node:20-alpine AS build
+FROM ghcr.io/library/node:20-alpine
+
 WORKDIR /app
 
 ARG VITE_API_URL
@@ -14,7 +15,7 @@ RUN npm run build
 
 
 # Stage 2: Serve the production build with NGINX
-FROM nginx:stable-alpine
+FROM ghcr.io/library/nginx:stable-alpine
 
 # Ensure runtime env injection happens LAST (fix for your issue)
 COPY env.sh /docker-entrypoint.d/99-env.sh

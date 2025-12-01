@@ -21,10 +21,7 @@ spec:
         - containerPort: 80
         env:
         - name: VITE_API_URL
-          valueFrom:
-            configMapKeyRef:
-              name: client-config
-              key: API_URL # We need to ensure this key exists in the ConfigMap!
+          value: "http://192.168.49.2:30002/api"
         volumeMounts:
         - name: config-volume
           mountPath: /usr/share/nginx/html/config.js

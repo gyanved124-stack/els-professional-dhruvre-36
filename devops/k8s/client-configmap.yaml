@@ -4,7 +4,4 @@ metadata:
   name: client-config
   namespace: devops-system
 data:
-  config.js: |
-    window.env = {
-      API_URL: "http://192.168.49.2:30002/api" // Update this with your Minikube IP
-    };
+

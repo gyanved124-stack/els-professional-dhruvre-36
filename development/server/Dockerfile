@@ -1,4 +1,4 @@
-FROM node:20-bullseye
+FROM ghcr.io/library/node:20-bullseye
 
 RUN apt-get update && apt-get install -y \
     python3 \

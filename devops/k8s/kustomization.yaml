@@ -7,7 +7,6 @@ resources:
 - server.yaml
 - client.yaml
 - ingress.yaml
-- client-configmap.yaml
 
 images:
 - name: devops-client-image

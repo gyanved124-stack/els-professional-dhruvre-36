@@ -32,9 +32,8 @@ const getApiUrl = () => {
   return "http://localhost:1337/api";
 };
 
-// Create axios instance with default configuration
+// Create axios instance WITHOUT baseURL to avoid early evaluation
 const api = axios.create({
-  baseURL: getApiUrl(),
   timeout: 10000, // 10 seconds
   headers: {
     "Content-Type": "application/json",
@@ -45,16 +44,23 @@ const api = axios.create({
  * REQUEST INTERCEPTOR
  * Runs BEFORE every request is sent
  * Use for: Adding auth tokens, logging, modifying headers
+ * CRITICAL: Sets baseURL dynamically to ensure window.env is loaded
  */
 api.interceptors.request.use(
   (config) => {
+    // Set baseURL dynamically for each request
+    // This ensures window.env from config.js is loaded
+    if (!config.baseURL) {
+      config.baseURL = getApiUrl();
+    }
+
     // Add JWT token if it exists
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
-    console.log("📤 Request:", config.method?.toUpperCase(), config.url);
+    console.log("📤 Request:", config.method?.toUpperCase(), config.baseURL + config.url);
     return config;
   },
   (error) => {

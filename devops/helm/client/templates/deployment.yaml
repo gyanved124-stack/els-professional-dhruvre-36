@@ -23,14 +23,6 @@ spec:
         - name: http
           containerPort: 80
           protocol: TCP
-        volumeMounts:
-        - name: config-volume
-          mountPath: /usr/share/nginx/html/config.js
-          subPath: config.js
-        {{- if .Values.env }}
         env:
-        {{- range $key, $value := .Values.env }}
-        - name: {{ $key }}
-          value: {{ $value | quote }}
-        {{- end }}
-        {{- end }}
+        - name: VITE_API_URL
+          value: "{{ .Values.config.apiUrl }}"

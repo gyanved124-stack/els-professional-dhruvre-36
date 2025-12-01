@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: DOCKER_USERNAME/devops-client # DOCKER_USERNAME
+  repository: dhruvre/devops-client # DOCKER_USERNAME
   pullPolicy: Always
   tag: "3d647ef5f18c61c9607401c4b2b0899bf82ee20b" # IMAGE_TAG
 

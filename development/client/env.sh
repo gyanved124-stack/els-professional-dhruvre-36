@@ -4,11 +4,9 @@
 rm -rf /usr/share/nginx/html/env-config.js
 touch /usr/share/nginx/html/env-config.js
 
-# Add assignment 
 echo "window._env_ = {" >> /usr/share/nginx/html/env-config.js
 
-# Read each line in .env file
-# Each line represents key=value pairs
+# Inject only env vars starting with VITE_
 printenv | grep VITE_ | awk -F = '{ print "  \"" $1 "\": \"" $2 "\"," }' >> /usr/share/nginx/html/env-config.js
 
 echo "}" >> /usr/share/nginx/html/env-config.js

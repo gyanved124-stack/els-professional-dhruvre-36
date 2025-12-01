@@ -19,17 +19,12 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 80
+
+        # Dynamic API URL passed at runtime (env.sh injects it)
         env:
         - name: VITE_API_URL
           value: "http://192.168.49.2:30002/api"
-        volumeMounts:
-        - name: config-volume
-          mountPath: /usr/share/nginx/html/config.js
-          subPath: config.js
-      volumes:
-      - name: config-volume
-        configMap:
-          name: client-config
+
 ---
 apiVersion: v1
 kind: Service
@@ -37,7 +32,7 @@ metadata:
   name: client-service
   namespace: devops-system
 spec:
-  type: NodePort # Expose to outside
+  type: NodePort
   selector:
     app: client
   ports:

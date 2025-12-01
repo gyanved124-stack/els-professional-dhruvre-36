@@ -15,7 +15,7 @@ RUN npm run build
 
 
 # Stage 2: Serve the production build with NGINX
-FROM ghcr.io/library/nginx:stable-alpine
+FROM mirror.gcr.io/library/nginx:stable-alpine
 
 # Ensure runtime env injection happens LAST (fix for your issue)
 COPY env.sh /docker-entrypoint.d/99-env.sh

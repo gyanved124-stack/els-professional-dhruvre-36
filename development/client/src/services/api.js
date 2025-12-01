@@ -18,21 +18,16 @@ import axios from "axios";
  * - Works in Node.js and browsers
  */
 
-// Determine API URL with priority: Runtime Env > ConfigMap > Build-time env > Fallback
+// Determine API URL with priority: Runtime Env > Build-time env > Fallback
 const getApiUrl = () => {
   // 1. Runtime Environment (injected by env.sh)
+  // This is the preferred method for Kubernetes deployments
   if (window._env_ && window._env_.VITE_API_URL) {
-    console.log("🔧 Using API URL from Runtime Env:", window._env_.VITE_API_URL);
+    console.log("🔧 Using API URL from Runtime Env (window._env_):", window._env_.VITE_API_URL);
     return window._env_.VITE_API_URL;
   }
   
-  // 2. ConfigMap (legacy support)
-  if (window.env?.API_URL) {
-    console.log("🔧 Using API URL from ConfigMap:", window.env.API_URL);
-    return window.env.API_URL;
-  }
-
-  // 3. Build-time Environment
+  // 2. Build-time Environment (local dev fallback)
   if (import.meta.env.VITE_API_URL) {
     console.log("🔧 Using API URL from build env:", import.meta.env.VITE_API_URL);
     return import.meta.env.VITE_API_URL;

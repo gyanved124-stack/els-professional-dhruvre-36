@@ -37,7 +37,6 @@ jobs:
       run: |
         docker build -t $DOCKER_USERNAME/devops-client:${{ github.sha }} \
           -f development/client/Dockerfile \
-          --build-arg VITE_API_URL=http://localhost:1337 \
           development/client
         docker push $DOCKER_USERNAME/devops-client:${{ github.sha }}
 

@@ -11,10 +11,10 @@ resources:
 
 images:
 - name: devops-client-image
-  newName: ${DOCKER_USERNAME}/devops-client
-  newTag: latest
+  newName: dhruvre/devops-client
+  newTag: 0f0289b1ff07cdda5036fc04f16fb3156418a13a
 
 - name: devops-server-image
-  newName: ${DOCKER_USERNAME}/devops-server
-  newTag: latest
+  newName: dhruvre/devops-server
+  newTag: 0f0289b1ff07cdda5036fc04f16fb3156418a13a
 

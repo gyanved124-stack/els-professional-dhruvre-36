@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: DOCKER_USERNAME/devops-client # DOCKER_USERNAME
   pullPolicy: Always
-  tag: "bd0432d127d7f114fd3a2805d1699b4ea6042952" # IMAGE_TAG
+  tag: "5f91b81cbdbe3d1e37daed5aaefa0b01f2ebf06a" # IMAGE_TAG
 
 config:
   apiUrl: "http://192.168.49.2:30002/api/api" # Update with Minikube IP

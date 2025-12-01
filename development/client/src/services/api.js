@@ -18,9 +18,23 @@ import axios from "axios";
  * - Works in Node.js and browsers
  */
 
+// Determine API URL with priority: ConfigMap > Build-time env > Fallback
+const getApiUrl = () => {
+  if (window.env?.API_URL) {
+    console.log("🔧 Using API URL from ConfigMap:", window.env.API_URL);
+    return window.env.API_URL;
+  }
+  if (import.meta.env.VITE_API_URL) {
+    console.log("🔧 Using API URL from build env:", import.meta.env.VITE_API_URL);
+    return import.meta.env.VITE_API_URL;
+  }
+  console.warn("⚠️ Using fallback API URL: http://localhost:1337/api");
+  return "http://localhost:1337/api";
+};
+
 // Create axios instance with default configuration
 const api = axios.create({
-  baseURL: window.env?.API_URL || import.meta.env.VITE_API_URL || "http://localhost:1337/api",
+  baseURL: getApiUrl(),
   timeout: 10000, // 10 seconds
   headers: {
     "Content-Type": "application/json",

@@ -12,9 +12,9 @@ resources:
 images:
 - name: devops-client-image
   newName: dhruvre/devops-client
-  newTag: 407a01cf1d71d5aed2b56d5af8d49de3a1c44915
+  newTag: 42a8170eddbbed0f58a53743084c16caa835fb4b
 
 - name: devops-server-image
   newName: dhruvre/devops-server
-  newTag: 407a01cf1d71d5aed2b56d5af8d49de3a1c44915
+  newTag: 42a8170eddbbed0f58a53743084c16caa835fb4b
 

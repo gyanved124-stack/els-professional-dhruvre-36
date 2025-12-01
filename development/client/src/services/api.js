@@ -18,16 +18,26 @@ import axios from "axios";
  * - Works in Node.js and browsers
  */
 
-// Determine API URL with priority: ConfigMap > Build-time env > Fallback
+// Determine API URL with priority: Runtime Env > ConfigMap > Build-time env > Fallback
 const getApiUrl = () => {
+  // 1. Runtime Environment (injected by env.sh)
+  if (window._env_ && window._env_.VITE_API_URL) {
+    console.log("🔧 Using API URL from Runtime Env:", window._env_.VITE_API_URL);
+    return window._env_.VITE_API_URL;
+  }
+  
+  // 2. ConfigMap (legacy support)
   if (window.env?.API_URL) {
     console.log("🔧 Using API URL from ConfigMap:", window.env.API_URL);
     return window.env.API_URL;
   }
+
+  // 3. Build-time Environment
   if (import.meta.env.VITE_API_URL) {
     console.log("🔧 Using API URL from build env:", import.meta.env.VITE_API_URL);
     return import.meta.env.VITE_API_URL;
   }
+  
   console.warn("⚠️ Using fallback API URL: http://localhost:1337/api");
   return "http://localhost:1337/api";
 };

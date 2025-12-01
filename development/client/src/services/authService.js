@@ -3,9 +3,7 @@
 // Learning: JWT authentication, Strapi API, async/await
 // ========================================
 
-import axios from "axios";
-
-const API_URL = import.meta.env.VITE_API_URL || "http://192.168.18.84:1337/api";
+import api from "./api";
 
 /**
  * WHAT IS JWT (JSON Web Token)?
@@ -29,13 +27,13 @@ const API_URL = import.meta.env.VITE_API_URL || "http://192.168.18.84:1337/api";
  */
 export const login = async (identifier, password) => {
   try {
-    const response = await axios.post(`${API_URL}/auth/local`, {
+    const response = await api.post("/auth/local", {
       identifier, // Can be email OR username
       password,
     });
 
     // Strapi returns: { jwt: "token...", user: {...} }
-    return response.data;
+    return response; // api.js interceptor already returns response.data
   } catch (error) {
     console.error("Login error:", error.response?.data || error.message);
 
@@ -57,14 +55,14 @@ export const login = async (identifier, password) => {
  */
 export const register = async (username, email, password) => {
   try {
-    const response = await axios.post(`${API_URL}/auth/local/register`, {
+    const response = await api.post("/auth/local/register", {
       username,
       email,
       password,
     });
 
     // Strapi returns: { jwt: "token...", user: {...} }
-    return response.data;
+    return response; // api.js interceptor already returns response.data
   } catch (error) {
     console.error("Registration error:", error.response?.data || error.message);
 
@@ -89,13 +87,8 @@ export const getCurrentUser = async () => {
   }
 
   try {
-    const response = await axios.get(`${API_URL}/users/me`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return response.data;
+    const response = await api.get("/users/me");
+    return response; // api.js interceptor returns response.data
   } catch (error) {
     console.error("Get user error:", error.response?.data || error.message);
     throw new Error("Failed to get current user. Please log in again.");

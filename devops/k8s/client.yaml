@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client
+  namespace: devops-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+      - name: client
+        image: devops-client-image
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: config-volume
+          mountPath: /usr/share/nginx/html/config.js
+          subPath: config.js
+      volumes:
+      - name: config-volume
+        configMap:
+          name: client-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+  namespace: devops-system
+spec:
+  type: NodePort # Expose to outside
+  selector:
+    app: client
+  ports:
+  - port: 80
+    targetPort: 80

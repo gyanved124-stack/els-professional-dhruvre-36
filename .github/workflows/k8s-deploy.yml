@@ -1,0 +1,77 @@
+name: Level 2 - Kubernetes CI/CD
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'development/client/**'
+      - 'development/server/**'
+      - 'devops/k8s/**'
+      - '.github/workflows/k8s-deploy.yml'
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_NAME }}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.PAT_TOKEN }}
+
+    - name: Setup Git config
+      run: |
+        git config user.email "github-actions@github.com"
+        git config user.name "GitHub Actions"
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_NAME }}
+        password: ${{ secrets.DOCKER_TOKEN }}
+
+    # Build and Push Client
+    - name: Build and Push Client Image
+      run: |
+        docker build -t $DOCKER_USERNAME/devops-client:${{ github.sha }} \
+          -f development/client/Dockerfile \
+          --build-arg VITE_API_URL=http://localhost:1337 \
+          development/client
+        docker push $DOCKER_USERNAME/devops-client:${{ github.sha }}
+
+    # Build and Push Server
+    - name: Build and Push Server Image
+      run: |
+        docker build -t $DOCKER_USERNAME/devops-server:${{ github.sha }} \
+          -f development/server/Dockerfile \
+          development/server
+        docker push $DOCKER_USERNAME/devops-server:${{ github.sha }}
+
+    # Update Kustomization with Docker Username and SHA
+    - name: Update Kustomization
+      run: |
+        # Replace placeholder with actual Docker username
+        sed -i "s|\${DOCKER_USERNAME}|$DOCKER_USERNAME|g" devops/k8s/kustomization.yaml
+        
+        # Update image tags to SHA
+        sed -i "s|newTag:.*|newTag: ${{ github.sha }}|g" devops/k8s/kustomization.yaml
+        
+        echo "Updated kustomization.yaml:"
+        cat devops/k8s/kustomization.yaml
+
+    # Commit and Push Updated Manifest
+    - name: Commit Manifest Changes
+      run: |
+        git add devops/k8s/kustomization.yaml
+        git commit -m "Update image tags to ${{ github.sha }}"
+        git push
+
+    # -------------------------------------------------------------------
+    # Validate Kubernetes manifests
+    # -------------------------------------------------------------------
+    - name: Validate Kubernetes manifests
+      run: |
+        echo "Validating manifests..."
+        ls -la devops/k8s/

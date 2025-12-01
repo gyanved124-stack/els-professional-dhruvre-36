@@ -1,4 +1,4 @@
-FROM ghcr.io/library/node:20-bullseye
+FROM mirror.gcr.io/library/node:20-alpine AS build
 
 RUN apt-get update && apt-get install -y \
     python3 \

@@ -1,4 +1,5 @@
-FROM mirror.gcr.io/library/node:20-alpine AS build
+# Debian-based image (supports apt-get)
+FROM mirror.gcr.io/library/node:20-bullseye AS build
 
 RUN apt-get update && apt-get install -y \
     python3 \
@@ -22,5 +23,4 @@ COPY . .
 RUN npm run build
 
 EXPOSE 1337
-
 CMD ["npm", "start"]

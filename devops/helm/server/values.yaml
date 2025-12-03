@@ -24,9 +24,17 @@ ingress:
 
 env:
   NODE_ENV: development
+  DATABASE_CLIENT: postgres
+  DATABASE_HOST: postgres
+  DATABASE_PORT: 5432
+  DATABASE_NAME: strapi
+  DATABASE_USERNAME: strapi
+  DATABASE_PASSWORD: strapi
+  DATABASE_SSL: false
+
+persistence:
+  enabled: true
+  size: 1Gi
+  accessMode: ReadWriteOnce
 
 sidecars: []
-
-  # - name: monitoring-sidecar
-  #   image: busybox
-  #   command: ['sh', '-c', 'while true; do echo "Monitoring..."; sleep 30; done']

@@ -38,30 +38,38 @@ jobs:
         if [ "$BRANCH_NAME" = "main" ]; then
           # Semantic versioning for main branch
           # Get latest tag
-          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          echo "Latest tag: $LATEST_TAG"
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
           
-          # Parse version
-          VERSION=${LATEST_TAG#v}
-          MAJOR=$(echo $VERSION | cut -d. -f1)
-          MINOR=$(echo $VERSION | cut -d. -f2)
-          PATCH=$(echo $VERSION | cut -d. -f3)
-          
-          # Check commit messages for version bump
-          COMMITS=$(git log ${LATEST_TAG}..HEAD --pretty=%B)
-          
-          if echo "$COMMITS" | grep -qi "BREAKING CHANGE"; then
-            MAJOR=$((MAJOR + 1))
-            MINOR=0
-            PATCH=0
-          elif echo "$COMMITS" | grep -qi "^feat"; then
-            MINOR=$((MINOR + 1))
-            PATCH=0
+          if [ -z "$LATEST_TAG" ]; then
+            # No tags exist, this is first release
+            echo "No existing tags found, starting from v0.1.0"
+            NEW_VERSION="v0.1.0"
           else
-            PATCH=$((PATCH + 1))
+            echo "Latest tag: $LATEST_TAG"
+            
+            # Parse version
+            VERSION=${LATEST_TAG#v}
+            MAJOR=$(echo $VERSION | cut -d. -f1)
+            MINOR=$(echo $VERSION | cut -d. -f2)
+            PATCH=$(echo $VERSION | cut -d. -f3)
+            
+            # Check commit messages for version bump
+            COMMITS=$(git log ${LATEST_TAG}..HEAD --pretty=%B)
+            
+            if echo "$COMMITS" | grep -qi "BREAKING CHANGE"; then
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+            elif echo "$COMMITS" | grep -qi "^feat"; then
+              MINOR=$((MINOR + 1))
+              PATCH=0
+            else
+              PATCH=$((PATCH + 1))
+            fi
+            
+            NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
           fi
           
-          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
           echo "New version: $NEW_VERSION"
           echo "tag=$NEW_VERSION" >> $GITHUB_OUTPUT
           echo "image_tag=$NEW_VERSION" >> $GITHUB_OUTPUT

@@ -8,7 +8,6 @@ env:
   NODE_ENV: development
   
   # ⚠️ IMPORTANT: Replace these secrets in production!
-  # Generate new keys with: openssl rand -base64 32
   # These are default development keys - change them if you need different values
   APP_KEYS: "+QtWQuJKp9IfkFWEtiXO8Q==,D1T2egPj8JmFs5TZnMth9g==,mssqCHe6hcR/BS7V+6owpw==,agB7crD33vhRZlIuePNpwA=="
   API_TOKEN_SALT: "8ezEvnYn0GzYWH8v0TF8zQ=="

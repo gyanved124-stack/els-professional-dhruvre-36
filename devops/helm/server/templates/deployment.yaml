@@ -23,8 +23,17 @@ spec:
               containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
           env:
-            - name: NODE_ENV
-              value: {{ .Values.env.NODE_ENV }}
+            {{- range $key, $value := .Values.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+          volumeMounts:
+            - name: uploads
+              mountPath: /opt/app/public/uploads
+      volumes:
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: {{ include "strapi-chart.fullname" . }}-pvc
         {{- with .Values.sidecars }}
         {{- toYaml . | nindent 8 }}
         {{- end }}

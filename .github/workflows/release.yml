@@ -130,12 +130,66 @@ jobs:
         echo "Server:"
         grep -A 2 "image:" devops/helm/server/values.yaml
 
-    # Create Git Tag for Main Branch
-    - name: Create Release Tag
+    # Create GitHub Release for Main Branch
+    - name: Create GitHub Release
       if: github.ref == 'refs/heads/main'
+      env:
+        GH_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
-        git tag ${{ steps.version.outputs.tag }}
-        git push origin ${{ steps.version.outputs.tag }}
+        # Generate release notes from commits
+        LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+        
+        if [ -z "$LATEST_TAG" ]; then
+          # First release - include all commits
+          RELEASE_NOTES=$(cat << EOF
+        ## 🎉 First Release
+        
+        This is the initial release of the DevOps System Level 3.
+        
+        ### ✨ Features
+        - GitFlow workflow with semantic versioning
+        - Automated CI/CD pipeline
+        - Helm-based deployments
+        - ArgoCD integration
+        - PostgreSQL database
+        - Client and Server applications
+        
+        ### 📦 Docker Images
+        - \`$DOCKER_USERNAME/devops-client:${{ steps.version.outputs.image_tag }}\`
+        - \`$DOCKER_USERNAME/devops-server:${{ steps.version.outputs.image_tag }}\`
+        EOF
+        )
+        else
+          # Generate notes from commit messages since last tag
+          echo "## 🔄 Changes since $LATEST_TAG" > release_notes.md
+          echo "" >> release_notes.md
+          
+          # Categorize commits
+          git log ${LATEST_TAG}..HEAD --pretty=format:"%s" | while IFS= read -r commit; do
+            if echo "$commit" | grep -qi "^feat"; then
+              echo "- ✨ $commit" >> release_notes.md
+            elif echo "$commit" | grep -qi "^fix"; then
+              echo "- 🐛 $commit" >> release_notes.md
+            elif echo "$commit" | grep -qi "^BREAKING"; then
+              echo "- ⚠️ $commit" >> release_notes.md
+            else
+              echo "- 📝 $commit" >> release_notes.md
+            fi
+          done
+          
+          echo "" >> release_notes.md
+          echo "### 📦 Docker Images" >> release_notes.md
+          echo "- \`$DOCKER_USERNAME/devops-client:${{ steps.version.outputs.image_tag }}\`" >> release_notes.md
+          echo "- \`$DOCKER_USERNAME/devops-server:${{ steps.version.outputs.image_tag }}\`" >> release_notes.md
+          
+          RELEASE_NOTES=$(cat release_notes.md)
+        fi
+        
+        # Create GitHub Release
+        gh release create "${{ steps.version.outputs.tag }}" \
+          --title "Release ${{ steps.version.outputs.tag }}" \
+          --notes "$RELEASE_NOTES" \
+          --target main
 
     # Commit and Push Updated Charts (Skip CI to prevent loop)
     - name: Commit Chart Changes

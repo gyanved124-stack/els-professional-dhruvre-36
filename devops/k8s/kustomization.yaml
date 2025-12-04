@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- namespace.yaml
+- postgres.yaml
+- server.yaml
+- client.yaml
+- ingress.yaml
+
+images:
+- name: devops-client-image
+  newName: YOUR_DOCKER_USERNAME/devops-client
+  newTag: latest # Update this with your actual tag
+
+- name: devops-server-image
+  newName: YOUR_DOCKER_USERNAME/devops-server
+  newTag: latest # Update this with your actual tag
+

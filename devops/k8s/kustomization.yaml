@@ -10,19 +10,9 @@ resources:
 
 images:
 - name: devops-client-image
-<<<<<<< HEAD
-  newName: YOUR_DOCKER_USERNAME/devops-client
-  newTag: 45454f478ded7686213a94a05035446c4673d2fd
+  newName: ${DOCKER_USERNAME}/devops-client  # ⚠️ Auto-updated by CI
+  newTag: latest # Auto-updated by CI with git commit SHA
 
 - name: devops-server-image
-  newName: YOUR_DOCKER_USERNAME/devops-server
-  newTag: 45454f478ded7686213a94a05035446c4673d2fd
-=======
-  newName: dhruvre/devops-client  # ⚠️ Auto-updated by CI
-  newTag: 45454f478ded7686213a94a05035446c4673d2fd
-
-- name: devops-server-image
-  newName: dhruvre/devops-server  # ⚠️ Auto-updated by CI
-  newTag: 45454f478ded7686213a94a05035446c4673d2fd
->>>>>>> a5c095c (feat: level 2 test final)
-
+  newName: ${DOCKER_USERNAME}/devops-server  # ⚠️ Auto-updated by CI
+  newTag: latest # Auto-updated by CI with git commit SHA

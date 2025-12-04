@@ -10,9 +10,9 @@ resources:
 
 images:
 - name: devops-client-image
-  newName: dhruvre/devops-client  # ⚠️ Auto-updated by CI
-  newTag: 64a30ee2544f93109e83aaf2ea13829905f99342
+  newName: dhruvre/devops-client
+  newTag: latest
 
 - name: devops-server-image
-  newName: dhruvre/devops-server  # ⚠️ Auto-updated by CI
-  newTag: 64a30ee2544f93109e83aaf2ea13829905f99342
+  newName: dhruvre/devops-server
+  newTag: latest

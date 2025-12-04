@@ -36,46 +36,26 @@ jobs:
         password: ${{ secrets.DOCKER_TOKEN }}
 
     # -------------------------------------------------------
-    # Build & push client image
+    # Build & push client image with latest tag
     # -------------------------------------------------------
     - name: Build and Push Client Image
       run: |
         docker build \
-          -t $DOCKER_USERNAME/devops-client:${{ github.sha }} \
+          -t $DOCKER_USERNAME/devops-client:latest \
           -f development/client/Dockerfile \
           development/client
-        docker push $DOCKER_USERNAME/devops-client:${{ github.sha }}
+        docker push $DOCKER_USERNAME/devops-client:latest
 
     # -------------------------------------------------------
-    # Build & push server image
+    # Build & push server image with latest tag
     # -------------------------------------------------------
     - name: Build and Push Server Image
       run: |
         docker build \
-          -t $DOCKER_USERNAME/devops-server:${{ github.sha }} \
+          -t $DOCKER_USERNAME/devops-server:latest \
           -f development/server/Dockerfile \
           development/server
-        docker push $DOCKER_USERNAME/devops-server:${{ github.sha }}
-
-    # -------------------------------------------------------
-    # Update Kustomization
-    # -------------------------------------------------------
-    - name: Update Kustomization
-      run: |
-        sed -i "s|\${DOCKER_USERNAME}|$DOCKER_USERNAME|g" devops/k8s/kustomization.yaml
-        sed -i "s|newTag:.*|newTag: ${{ github.sha }}|g" devops/k8s/kustomization.yaml
-        
-        echo "Updated kustomization.yaml:"
-        cat devops/k8s/kustomization.yaml
-
-    # -------------------------------------------------------
-    # Commit changes
-    # -------------------------------------------------------
-    - name: Commit Manifest Changes
-      run: |
-        git add devops/k8s/kustomization.yaml
-        git commit -m "Update image tags to ${{ github.sha }}" || echo "No changes to commit"
-        git push
+        docker push $DOCKER_USERNAME/devops-server:latest
 
     # -------------------------------------------------------
     # Validate manifests

@@ -10,9 +10,9 @@ resources:
 
 images:
 - name: devops-client-image
-  newName: dhruvre/devops-client
-  newTag: 7a736ff7669ab0fa0a9fb38601fc44929b3e01e3
+  newName: dhruvre/devops-client  # ⚠️ CHANGE THIS: Replace 'dhruvre' with your Docker Hub username
+  newTag: latest  # Fixed to 'latest' - CI pushes images with this tag
 
 - name: devops-server-image
-  newName: dhruvre/devops-server
-  newTag: 7a736ff7669ab0fa0a9fb38601fc44929b3e01e3
+  newName: dhruvre/devops-server  # ⚠️ CHANGE THIS: Replace 'dhruvre' with your Docker Hub username
+  newTag: latest  # Fixed to 'latest' - CI pushes images with this tag

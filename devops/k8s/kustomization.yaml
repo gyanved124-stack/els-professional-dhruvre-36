@@ -11,9 +11,9 @@ resources:
 images:
 - name: devops-client-image
   newName: YOUR_DOCKER_USERNAME/devops-client
-  newTag: latest # Update this with your actual tag
+  newTag: a9f53d1665fa9a63b03e04aacbbc750dfe4bffb8
 
 - name: devops-server-image
   newName: YOUR_DOCKER_USERNAME/devops-server
-  newTag: latest # Update this with your actual tag
+  newTag: a9f53d1665fa9a63b03e04aacbbc750dfe4bffb8
 

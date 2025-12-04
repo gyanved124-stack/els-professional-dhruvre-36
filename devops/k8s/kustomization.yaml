@@ -12,17 +12,17 @@ images:
 - name: devops-client-image
 <<<<<<< HEAD
   newName: YOUR_DOCKER_USERNAME/devops-client
-  newTag: b7eeeb062534228727c7995e68c66e3b055ffd29
+  newTag: 45454f478ded7686213a94a05035446c4673d2fd
 
 - name: devops-server-image
   newName: YOUR_DOCKER_USERNAME/devops-server
-  newTag: b7eeeb062534228727c7995e68c66e3b055ffd29
+  newTag: 45454f478ded7686213a94a05035446c4673d2fd
 =======
   newName: dhruvre/devops-client  # ⚠️ Auto-updated by CI
-  newTag: b7eeeb062534228727c7995e68c66e3b055ffd29
+  newTag: 45454f478ded7686213a94a05035446c4673d2fd
 
 - name: devops-server-image
   newName: dhruvre/devops-server  # ⚠️ Auto-updated by CI
-  newTag: b7eeeb062534228727c7995e68c66e3b055ffd29
+  newTag: 45454f478ded7686213a94a05035446c4673d2fd
 >>>>>>> a5c095c (feat: level 2 test final)
 

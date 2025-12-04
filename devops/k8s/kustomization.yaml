@@ -10,9 +10,9 @@ resources:
 
 images:
 - name: devops-client-image
-  newName: ${DOCKER_USERNAME}/devops-client  # ⚠️ Auto-updated by CI
-  newTag: latest # Auto-updated by CI with git commit SHA
+  newName: dhruvre/devops-client  # ⚠️ Auto-updated by CI
+  newTag: 64a30ee2544f93109e83aaf2ea13829905f99342
 
 - name: devops-server-image
-  newName: ${DOCKER_USERNAME}/devops-server  # ⚠️ Auto-updated by CI
-  newTag: latest # Auto-updated by CI with git commit SHA
+  newName: dhruvre/devops-server  # ⚠️ Auto-updated by CI
+  newTag: 64a30ee2544f93109e83aaf2ea13829905f99342

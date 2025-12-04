@@ -23,7 +23,7 @@ spec:
         # Dynamic API URL passed at runtime (env.sh injects it)
         env:
         - name: VITE_API_URL
-          value: "http://192.168.49.2:30002/api"
+          value: "http://api.els.local/api"
 
 ---
 apiVersion: v1

@@ -12,17 +12,17 @@ images:
 - name: devops-client-image
 <<<<<<< HEAD
   newName: YOUR_DOCKER_USERNAME/devops-client
-  newTag: a9f53d1665fa9a63b03e04aacbbc750dfe4bffb8
+  newTag: b7eeeb062534228727c7995e68c66e3b055ffd29
 
 - name: devops-server-image
   newName: YOUR_DOCKER_USERNAME/devops-server
-  newTag: a9f53d1665fa9a63b03e04aacbbc750dfe4bffb8
+  newTag: b7eeeb062534228727c7995e68c66e3b055ffd29
 =======
-  newName: ${DOCKER_USERNAME}/devops-client  # ⚠️ Auto-updated by CI
-  newTag: latest # Auto-updated by CI with git commit SHA
+  newName: dhruvre/devops-client  # ⚠️ Auto-updated by CI
+  newTag: b7eeeb062534228727c7995e68c66e3b055ffd29
 
 - name: devops-server-image
-  newName: ${DOCKER_USERNAME}/devops-server  # ⚠️ Auto-updated by CI
-  newTag: latest # Auto-updated by CI with git commit SHA
+  newName: dhruvre/devops-server  # ⚠️ Auto-updated by CI
+  newTag: b7eeeb062534228727c7995e68c66e3b055ffd29
 >>>>>>> a5c095c (feat: level 2 test final)
 

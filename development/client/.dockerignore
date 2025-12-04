@@ -1,6 +1,21 @@
+# Dependencies
 node_modules
-build
+npm-debug.log
+yarn-error.log
+
+# Build
 dist
-.git
-.github
+build
+.cache
+
+# Environment
 .env
+.env.local
+
+# IDE
+.vscode
+.idea
+
+# Git
+.git
+.gitignore

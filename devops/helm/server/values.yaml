@@ -1,5 +1,26 @@
 replicaCount: 1
 
+image:
+  repository: dhruvre/devops-server # DOCKER_USERNAME/devops-server
+  pullPolicy: IfNotPresent
+  tag: "latest" # IMAGE_TAG
+
+service:
+  type: NodePort
+  port: 1337
+  targetPort: 1337
+  nodePort: 30002
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: els-server.local
+      paths:
+        - path: /
+          pathType: Prefix
 
 env:
   # Strapi Server Configuration
@@ -8,6 +29,7 @@ env:
   NODE_ENV: development
   
   # ⚠️ IMPORTANT: Replace these secrets in production!
+  # Generate new keys with: openssl rand -base64 32
   # These are default development keys - change them if you need different values
   APP_KEYS: "+QtWQuJKp9IfkFWEtiXO8Q==,D1T2egPj8JmFs5TZnMth9g==,mssqCHe6hcR/BS7V+6owpw==,agB7crD33vhRZlIuePNpwA=="
   API_TOKEN_SALT: "8ezEvnYn0GzYWH8v0TF8zQ=="
@@ -28,31 +50,6 @@ env:
   DATABASE_USERNAME: strapi
   DATABASE_PASSWORD: strapi
   DATABASE_SSL: "false"
-
-
-image:
-  repository: dhruvre/devops-server # DOCKER_USERNAME/devops-server
-  pullPolicy: IfNotPresent
-  tag: "v0.3.3" # IMAGE_TAG
-
-service:
-  type: NodePort
-  port: 1337
-  targetPort: 1337
-  nodePort: 30002
-
-ingress:
-  enabled: true
-  className: "nginx"
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-  hosts:
-    - host: els-api.local
-      paths:
-        - path: /
-          pathType: Prefix
-
-
 
 persistence:
   enabled: true

@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: dhruvre/devops-client # DOCKER_USERNAME
   pullPolicy: Always
-  tag: "v0.3.3" # IMAGE_TAG
+  tag: "latest" # IMAGE_TAG
 
 config:
   apiUrl: "http://192.168.49.2:30002/api/api" # Update with Minikube IP
@@ -25,6 +25,6 @@ ingress:
           pathType: Prefix
 
 # Server URL that will be passed to React app at build time
-serverUrl: "http://els-api.local"
+serverUrl: "http://els-server.local"
 
 env: {}

@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: dhruvre/devops-client # DOCKER_USERNAME
   pullPolicy: Always
-  tag: "09cd83092125a537af6efea2e2f4e7737feb2f8c" # IMAGE_TAG
+  tag: "v0.4.1" # IMAGE_TAG
 
 config:
   apiUrl: "http://els-server.local/api" # Update with Minikube IP

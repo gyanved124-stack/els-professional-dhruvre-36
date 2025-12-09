@@ -6,7 +6,7 @@ image:
   tag: "v0.4.0" # IMAGE_TAG
 
 config:
-  apiUrl: "http://192.168.49.2:30002/api/api" # Update with Minikube IP
+  apiUrl: "http://els-server.local/api" # Update with Minikube IP
   pullPolicy: IfNotPresent
 
 service:

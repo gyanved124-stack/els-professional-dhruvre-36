@@ -37,16 +37,13 @@
 }
 
 /* Dark Theme */
-[data-theme="dark"] .feature-card {
   background: #2d2d44;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="dark"] .feature-title {
   color: #e0e0e0;
 }
 
-[data-theme="dark"] .feature-description {
   color: #b0b0b0;
 }
 

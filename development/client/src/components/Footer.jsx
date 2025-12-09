@@ -4,6 +4,7 @@
 // ========================================
 
 import { Link } from "react-router-dom";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa6";
 import "../styles/Footer.css";
 
 function Footer() {
@@ -51,13 +52,13 @@ function Footer() {
           <h4>Connect</h4>
           <div className="social-links">
             <a href="#" aria-label="GitHub">
-              💻
+              <FaGithub />
             </a>
             <a href="#" aria-label="LinkedIn">
-              💼
+              <FaLinkedin />
             </a>
             <a href="#" aria-label="Twitter">
-              🐦
+              <FaTwitter />
             </a>
           </div>
         </div>

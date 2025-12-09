@@ -9,6 +9,7 @@ import { useAuth } from "../context/AuthContext";
 import { getAllUsers } from "../services/userService";
 import Hero from "../components/Hero";
 import FeatureGrid from "../components/FeatureGrid";
+import { FaUsers, FaUserGraduate, FaAward } from "react-icons/fa6";
 import "../styles/Home.css";
 
 /**
@@ -107,17 +108,23 @@ function Home() {
             ) : (
               <div className="stats-grid">
                 <div className="stat-card">
-                  <div className="stat-icon">👥</div>
+                  <div className="stat-icon">
+                    <FaUsers />
+                  </div>
                   <h3 className="stat-value">{stats.totalUsers}</h3>
                   <p className="stat-label">Total Members</p>
                 </div>
                 <div className="stat-card">
-                  <div className="stat-icon">🎓</div>
+                  <div className="stat-icon">
+                    <FaUserGraduate />
+                  </div>
                   <h3 className="stat-value">{stats.students}</h3>
                   <p className="stat-label">Students</p>
                 </div>
                 <div className="stat-card">
-                  <div className="stat-icon">🏆</div>
+                  <div className="stat-icon">
+                    <FaAward />
+                  </div>
                   <h3 className="stat-value">{stats.alumni}</h3>
                   <p className="stat-label">Alumni</p>
                 </div>

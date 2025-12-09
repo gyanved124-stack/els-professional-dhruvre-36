@@ -6,15 +6,13 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .main-content {
   flex: 1;
   padding: 2rem 0;
-  background: var(--background-color, #f5f7fa);
-}
-
-/* Dark theme support */
-[data-theme="dark"] .main-content {
-  background: #1a1a2e;
+  /* Background is handled by .layout or body now */
 }

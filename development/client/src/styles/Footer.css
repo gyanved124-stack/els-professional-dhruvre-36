@@ -3,10 +3,11 @@
    ======================================== */
 
 .footer {
-  background: #2d3748;
-  color: #e2e8f0;
-  padding: 3rem 0 1rem;
+  background: #111827; /* Dark background for contrast */
+  color: #9CA3AF; /* Light gray text */
+  padding: 4rem 0 2rem;
   margin-top: auto;
+  border-top: 1px solid #1F2937;
 }
 
 .footer-container {
@@ -15,25 +16,29 @@
   padding: 0 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 3rem;
+  margin-bottom: 3rem;
 }
 
 .footer-section h3 {
-  color: white;
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
+  color: #F9FAFB; /* White text */
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .footer-section h4 {
-  color: #cbd5e0;
+  color: #F3F4F6; /* Off-white text */
   font-size: 1.1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .footer-section p {
-  color: #a0aec0;
+  color: #9CA3AF;
   font-size: 0.95rem;
   line-height: 1.6;
 }
@@ -49,14 +54,15 @@
 }
 
 .footer-section ul li a {
-  color: #a0aec0;
+  color: #9CA3AF;
   text-decoration: none;
-  transition: color 0.3s;
+  transition: all 0.2s ease;
   font-size: 0.95rem;
 }
 
 .footer-section ul li a:hover {
-  color: #667eea;
+  color: #FFFFFF;
+  padding-left: 5px;
 }
 
 /* Social Links */
@@ -68,30 +74,34 @@
 .social-links a {
   font-size: 1.5rem;
   text-decoration: none;
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
+  color: #9CA3AF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .social-links a:hover {
-  transform: scale(1.2);
+  transform: translateY(-3px);
+  color: #FFFFFF;
+  background: var(--primary-color);
 }
 
 /* Footer Bottom */
 .footer-bottom {
-  border-top: 1px solid #4a5568;
-  padding-top: 1.5rem;
+  border-top: 1px solid #1F2937;
+  padding-top: 2rem;
   text-align: center;
-  color: #a0aec0;
+  color: #6B7280;
   font-size: 0.9rem;
 }
 
 .footer-bottom p {
   margin: 0.25rem 0;
-}
-
-/* Dark theme adjustment */
-[data-theme="dark"] .footer {
-  background: #1a1a2e;
-  border-top: 1px solid #2d2d44;
 }
 
 /* Responsive */

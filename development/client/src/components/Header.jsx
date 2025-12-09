@@ -5,12 +5,12 @@
 
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { useTheme } from "../context/ThemeContext";
+
 import "../styles/Header.css";
 
 function Header() {
   const { isAuthenticated, user, logout } = useAuth();
-  const { theme, toggleTheme } = useTheme();
+
 
   return (
     <header className="header">
@@ -77,14 +77,6 @@ function Header() {
             </>
           )}
 
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="theme-toggle"
-            aria-label="Toggle theme"
-          >
-            {theme === "dark" ? "☀️" : "🌙"}
-          </button>
         </nav>
       </div>
     </header>

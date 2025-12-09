@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: dhruvre/devops-server
   pullPolicy: IfNotPresent
-  tag: "v0.4.0" # IMAGE_TAG
+  tag: "ae9595a22f3df27cda2ef1a2d3760089e6666137" # IMAGE_TAG
 
 service:
   type: NodePort

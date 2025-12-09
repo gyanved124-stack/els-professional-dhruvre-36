@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: devops-app-system
+  namespace: argocd
+spec:
+  project: default
+  
+  source:
+    repoURL: https://github.com/gyanved124-stack/els-professional-dhruvre-36.git
+    targetRevision: HEAD
+    path: devops/helm
+    
+    helm:
+      parameters:
+        - name: replicaCount
+          value: "1"
+  
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: devops-system
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: dhruvre/devops-server # DOCKER_USERNAME/devops-server
+  repository: dhruvre/devops-server
   pullPolicy: IfNotPresent
   tag: "v0.4.0" # IMAGE_TAG
 

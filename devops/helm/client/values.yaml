@@ -1,4 +1,5 @@
 replicaCount: 1
+fullnameOverride: els-client
 
 image:
   repository: dhruvre/devops-client # DOCKER_USERNAME

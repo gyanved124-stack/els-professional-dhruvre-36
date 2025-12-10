@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: els-postgres
   labels:
-    app: postgres
+    app: els-postgres
 spec:
+  strategy:
+    type: Recreate
   revisionHistoryLimit: 5  # Keep only last 5 ReplicaSets
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: postgres
+      app: els-postgres
   template:
     metadata:
       labels:
-        app: postgres
+        app: els-postgres
     spec:
       containers:
       - name: postgres

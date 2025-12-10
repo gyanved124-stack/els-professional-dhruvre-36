@@ -3,14 +3,14 @@ kind: Service
 metadata:
   name: els-postgres
   labels:
-    app: postgres
+    app: els-postgres
 spec:
   type: {{ .Values.service.type }}
   ports:
   - port: {{ .Values.service.port }}
     targetPort: 5432
   selector:
-    app: postgres
+    app: els-postgres
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

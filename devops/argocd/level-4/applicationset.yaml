@@ -35,6 +35,10 @@ spec:
               value: '{{replicas}}'
             - name: environment
               value: '{{env}}'
+            - name: els-client.ingress.hosts[0].host
+              value: '{{env}}-els-client.local'
+            - name: els-server.ingress.hosts[0].host
+              value: '{{env}}-els-server.local'
       
       destination:
         server: https://kubernetes.default.svc

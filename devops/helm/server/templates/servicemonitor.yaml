@@ -1,0 +1,17 @@
+{{- if .Values.monitoring.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "strapi-chart.fullname" . }}
+  labels:
+    {{- include "strapi-chart.labels" . | nindent 4 }}
+    app: {{ include "strapi-chart.name" . }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "strapi-chart.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: http
+      path: {{ .Values.monitoring.metricsPath }}
+      interval: {{ .Values.monitoring.scrapeInterval }}
+{{- end }}

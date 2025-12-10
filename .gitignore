@@ -1,0 +1,4 @@
+# Helm dependencies
+Chart.lock
+**/Chart.lock
+*.lock

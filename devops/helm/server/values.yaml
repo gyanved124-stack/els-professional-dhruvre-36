@@ -9,11 +9,11 @@ autoscaling:
 
 resources:
   limits:
-    cpu: 200m
-    memory: 256Mi
+    cpu: 500m
+    memory: 1Gi
   requests:
     cpu: 100m
-    memory: 128Mi
+    memory: 256Mi
 
 image:
   repository: dhruvre/devops-server # DOCKER_USERNAME/devops-server

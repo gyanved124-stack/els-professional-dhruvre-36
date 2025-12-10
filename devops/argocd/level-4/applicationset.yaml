@@ -17,6 +17,9 @@ spec:
           - env: prod
             namespace: els-devops-prod
             replicas: "3"
+          - env: level-4
+            namespace: els-devops-system
+            replicas: "1"
   
   template:
     metadata:

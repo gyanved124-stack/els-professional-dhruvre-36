@@ -8,15 +8,6 @@ spec:
     # Generate Applications for each environment
     - list:
         elements:
-          - env: dev
-            namespace: els-devops-dev
-            replicas: "1"
-          - env: staging
-            namespace: els-devops-staging
-            replicas: "2"
-          - env: prod
-            namespace: els-devops-prod
-            replicas: "3"
           - env: level-4
             namespace: els-devops-system
             replicas: "1"

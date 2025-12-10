@@ -7,12 +7,12 @@ dependencies:
   - name: els-client
     version: "1.0.0"
     repository: "file://./client"
-    alias: client
+    alias: els-client
   - name: els-server
     version: "0.1.0"
     repository: "file://./server"
-    alias: server
+    alias: els-server
   - name: els-postgres
     version: "1.0.0"
     repository: "file://./postgres"
-    alias: postgres
+    alias: els-postgres

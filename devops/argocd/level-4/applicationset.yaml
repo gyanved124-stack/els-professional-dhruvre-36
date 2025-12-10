@@ -1,0 +1,48 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: devops-appset
+  namespace: argocd
+spec:
+  generators:
+    # Generate Applications for each environment
+    - list:
+        elements:
+          - env: dev
+            namespace: els-devops-dev
+            replicas: "1"
+          - env: staging
+            namespace: els-devops-staging
+            replicas: "2"
+          - env: prod
+            namespace: els-devops-prod
+            replicas: "3"
+  
+  template:
+    metadata:
+      name: 'devops-app-{{env}}'
+    spec:
+      project: default
+      
+      source:
+        repoURL: https://github.com/gyanved124-stack/els-professional-dhruvre-36.git  # ⚠️ UPDATE THIS
+        targetRevision: HEAD
+        path: devops/helm
+        
+        helm:
+          parameters:
+            - name: replicaCount
+              value: '{{replicas}}'
+            - name: environment
+              value: '{{env}}'
+      
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{namespace}}'
+      
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

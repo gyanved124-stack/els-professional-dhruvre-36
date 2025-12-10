@@ -2,10 +2,10 @@ apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: server-fault-injection
-  namespace: devops-system  # Ensure this matches where your service is running
+  namespace: els-devops-system  # Ensure this matches where your service is running
 spec:
   hosts:
-  - server  # Matches the Service name
+  - els-server  # Current deployed service name
   http:
   # 500 Fault (15%)
   - match:
@@ -19,7 +19,7 @@ spec:
           value: 100
     route:
     - destination:
-        host: server
+        host: els-server
 
   # 404 Fault (15%)
   - match:
@@ -33,8 +33,21 @@ spec:
           value: 100
     route:
     - destination:
-        host: server
+        host: els-server
 
+  # 302 Redirect (5%)
+  - match:
+    - headers:
+        x-test-scenario:
+          exact: "302"
+    fault:
+      abort:
+        httpStatus: 302
+        percentage:
+          value: 100
+    route:
+    - destination:
+        host: els-server
   # 400 Fault (10%)
   - match:
     - headers:
@@ -47,9 +60,9 @@ spec:
           value: 100
     route:
     - destination:
-        host: server
+        host: els-server
 
-  # Normal traffic (60%)
+  # Default (55% - no header)
   - route:
     - destination:
-        host: server
+        host: els-server

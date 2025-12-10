@@ -1,12 +1,12 @@
 dependencies:
-- name: client
+- name: els-client
   repository: file://./client
   version: 1.0.0
-- name: server
+- name: els-server
   repository: file://./server
   version: 0.1.0
-- name: postgres
+- name: els-postgres
   repository: file://./postgres
   version: 1.0.0
-digest: sha256:eb69732cc2b4a2a95e87a69844950efc5b6ebd297d3bff84c112c813e23b0404
-generated: "2025-12-10T12:56:35.224056714+05:30"
+digest: sha256:31119a63bd8adee1b685997689645c9b66d730926a93a555f133ead398e74c3c
+generated: "2025-12-10T15:17:03.394224451+05:30"

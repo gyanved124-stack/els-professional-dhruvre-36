@@ -20,7 +20,6 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-        - containerPort: {{ .Values.service.targetPort }}
         - name: http
           containerPort: 80
           protocol: TCP

@@ -1,0 +1,8 @@
+els-client:
+  fullnameOverride: els-client
+
+els-server:
+  fullnameOverride: els-server
+
+els-postgres:
+  fullnameOverride: els-postgres

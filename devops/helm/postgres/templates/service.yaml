@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: els-postgres
   labels:
     app: postgres
 spec:
@@ -15,7 +15,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-pvc
+  name: els-postgres-pvc
 spec:
   accessModes:
     - {{ .Values.storage.accessMode }}

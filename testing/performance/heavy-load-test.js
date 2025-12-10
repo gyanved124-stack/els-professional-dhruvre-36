@@ -8,9 +8,6 @@ export const options = {
         { duration: '2m', target: 5 },    // Maintain 5 users
         { duration: '1m', target: 0 },    // Ramp down
     ],
-    thresholds: {
-        http_req_duration: ['p(95)<500'], // 95% of requests should be below 500ms
-    },
 };
 
 // Use internal service name

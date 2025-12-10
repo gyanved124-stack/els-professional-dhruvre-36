@@ -185,11 +185,15 @@ jobs:
           RELEASE_NOTES=$(cat release_notes.md)
         fi
         
-        # Create GitHub Release
-        gh release create "${{ steps.version.outputs.tag }}" \
-          --title "Release ${{ steps.version.outputs.tag }}" \
-          --notes "$RELEASE_NOTES" \
-          --target main
+        # Create GitHub Release if it doesn't exist
+        if ! gh release view "${{ steps.version.outputs.tag }}" >/dev/null 2>&1; then
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --title "Release ${{ steps.version.outputs.tag }}" \
+            --notes "$RELEASE_NOTES" \
+            --target main
+        else
+          echo "Release ${{ steps.version.outputs.tag }} already exists. Skipping creation."
+        fi
 
     # Commit and Push Updated Charts (Skip CI to prevent loop)
     - name: Commit Chart Changes

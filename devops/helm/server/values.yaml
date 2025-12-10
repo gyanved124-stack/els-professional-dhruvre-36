@@ -4,7 +4,7 @@ autoscaling:
   enabled: true
   minReplicas: 1
   maxReplicas: 3
-  targetCPUUtilizationPercentage: 50
+  targetCPUUtilizationPercentage: 25
   # targetMemoryUtilizationPercentage: 80
 
 resources:
@@ -12,7 +12,7 @@ resources:
     cpu: 500m
     memory: 2Gi
   requests:
-    cpu: 250m
+    cpu: 75m
     memory: 256Mi
 
 image:

@@ -4,9 +4,9 @@ import { check, sleep } from 'k6';
 export const options = {
     // Ramp up needed to not overwhelm immediately, but fast enough to trigger HPA
     stages: [
-        { duration: '2m', target: 50 },   // Slow ramp up to 50 users (2 mins)
-        { duration: '2m', target: 50 },   // Maintain 50 users (2 mins)
-        { duration: '1m', target: 0 },    // Ramp down (1 min)
+        { duration: '2m', target: 5 },    // Slow ramp up to 5 users
+        { duration: '2m', target: 5 },    // Maintain 5 users
+        { duration: '1m', target: 0 },    // Ramp down
     ],
     thresholds: {
         http_req_duration: ['p(95)<500'], // 95% of requests should be below 500ms

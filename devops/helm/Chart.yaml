@@ -4,12 +4,15 @@ description: Umbrella chart for Level 4 deployment
 type: application
 version: 1.0.0
 dependencies:
-  - name: client
+  - name: els-client
     version: "1.0.0"
     repository: "file://./client"
-  - name: server
+    alias: client
+  - name: els-server
     version: "0.1.0"
     repository: "file://./server"
-  - name: postgres
+    alias: server
+  - name: els-postgres
     version: "1.0.0"
     repository: "file://./postgres"
+    alias: postgres

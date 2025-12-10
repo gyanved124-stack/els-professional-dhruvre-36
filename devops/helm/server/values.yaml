@@ -18,7 +18,7 @@ resources:
 image:
   repository: dhruvre/devops-server # DOCKER_USERNAME/devops-server
   pullPolicy: IfNotPresent
-  tag: "v0.8.0" # IMAGE_TAG
+  tag: "v0.8.1" # IMAGE_TAG
 
 service:
   type: NodePort

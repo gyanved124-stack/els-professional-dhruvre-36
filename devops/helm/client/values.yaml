@@ -4,7 +4,7 @@ fullnameOverride: els-client
 image:
   repository: dhruvre/devops-client # DOCKER_USERNAME
   pullPolicy: Always
-  tag: "v0.8.0" # IMAGE_TAG
+  tag: "v0.8.1" # IMAGE_TAG
 
 config:
   apiUrl: "http://els-server.local/api" # Update with Minikube IP

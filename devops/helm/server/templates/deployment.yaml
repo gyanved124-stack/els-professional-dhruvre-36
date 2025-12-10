@@ -6,7 +6,9 @@ metadata:
     {{- include "strapi-chart.labels" . | nindent 4 }}
 spec:
   revisionHistoryLimit: 5  # Keep only last 5 ReplicaSets
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "strapi-chart.selectorLabels" . | nindent 6 }}

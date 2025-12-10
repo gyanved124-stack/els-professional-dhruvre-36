@@ -33,7 +33,7 @@ spec:
               port: http
             initialDelaySeconds: 120
             periodSeconds: 10
-            timeoutSeconds: 5
+            timeoutSeconds: 5     
             failureThreshold: 3
           readinessProbe:
             httpGet:
@@ -41,7 +41,7 @@ spec:
               port: http
             initialDelaySeconds: 90
             periodSeconds: 10
-            timeoutSeconds: 5
+            timeoutSeconds: 5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
             failureThreshold: 3
           env:
             {{- range $key, $value := .Values.env }}

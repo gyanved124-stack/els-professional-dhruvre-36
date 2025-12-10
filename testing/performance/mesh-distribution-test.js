@@ -11,7 +11,7 @@ export const options = {
 
 // IMPORTANT: Use internal service name, not external URL
 // This runs from inside the cluster, so fault injection works!
-const BASE_URL = 'http://devops-stack-server.devops-system.svc.cluster.local:1337/_health';
+const BASE_URL = 'http://els-server.els-devops-system.svc.cluster.local:1337/_health';
 
 function randomIntBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);

@@ -1,5 +1,20 @@
 replicaCount: 1
 
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 10
+  # targetMemoryUtilizationPercentage: 80
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
 image:
   repository: dhruvre/devops-server # DOCKER_USERNAME/devops-server
   pullPolicy: IfNotPresent

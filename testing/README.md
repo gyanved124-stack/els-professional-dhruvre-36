@@ -1,42 +1,40 @@
-# 🧪 Testing Directory
+# Testing - Performance & Integration Tests
 
-**Status:** 🚧 Coming in Level 4+
+This folder contains all testing configurations used across levels.
 
----
+## Structure
 
-## What's This For?
+```
+testing/
+└── performance/          # K6 load testing scripts
+    ├── .env             # Configuration (BASE_URL)
+    ├── load_test.js     # Basic health check test
+    └── mesh-distribution-test.js  # Error distribution test (Level 4)
+```
 
-This directory will contain **automated testing configurations** for the DevOps system, including:
+## Usage
 
-- API testing with Karate
-- Integration tests
-- End-to-end (E2E) tests
-- Performance testing
-- Monitoring validation
+### Running Tests
 
----
+```bash
+cd testing/performance
+k6 run load_test.js
+```
 
-## When Will This Be Used?
+### Configuration
 
-**Level 4 and beyond** will cover:
-- Writing automated tests for your APIs
-- Setting up continuous testing in CI/CD
-- Integrating tests with monitoring
-- Test-driven deployment strategies
+Edit `.env` file to change target URL:
+```bash
+BASE_URL=http://els-server.local/_health
+```
 
----
+## Test Scripts
 
-## Current Status
+- **load_test.js**: Simple health check, 10 concurrent users, 1.5 minutes
+- **mesh-distribution-test.js**: Error distribution testing (runs inside Kubernetes)
 
-For now, this directory is a **placeholder**. Focus on mastering:
-- ✅ **Level 1**: Docker & Containerization
-- ✅ **Level 2**: Kubernetes & ArgoCD
-- ✅ **Level 3**: Helm Charts & Semantic Versioning
+## Notes
 
-Once you've completed Level 3, you'll be ready to add comprehensive testing to your DevOps workflow!
-
----
-
-## Stay Tuned! 🚀
-
-Testing is a crucial part of production-ready systems. We'll cover it in detail in future levels.
+- All test scripts are designed for production environments
+- Tests use internal service URLs when run inside cluster
+- Learning guides for testing are in `level-4/`

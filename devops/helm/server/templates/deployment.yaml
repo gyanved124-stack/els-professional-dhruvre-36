@@ -31,6 +31,10 @@ spec:
           volumeMounts:
             - name: uploads
               mountPath: /opt/app/public/uploads
+          {{- if .Values.resources }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- end }}
       volumes:
         - name: uploads
           persistentVolumeClaim:

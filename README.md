@@ -15,7 +15,11 @@ devops-system/
 ├── devops/                # ☁️ Infrastructure Configuration
 │   ├── docker/            # Level 1: Docker Compose files
 │   ├── k8s/               # Level 2: Kubernetes Manifests
-│   └── helm/              # Level 3: Helm Charts
+│   ├── helm/              # Level 3 & 4: Helm Charts
+│   └── argocd/            # Level 5: GitOps configs
+│
+├── testing/               # 🧪 Performance & Integration Tests
+│   └── performance/       # Level 4: K6 load testing
 │
 └── .github/               # 🤖 CI/CD Automation
     └── workflows/         # GitHub Actions
@@ -47,6 +51,14 @@ This workspace evolves as you learn.
   - `devops/helm/` (Create Helm Charts)
   - `.github/workflows/` (Setup CI/CD)
 - **Guide:** [Level 3 README](../level-3/README.md)
+
+### Level 4: Monitoring & Performance
+- **Goal:** Monitor and optimize.
+- **Where to work:**
+  - `devops/helm/` (Already set up from Level 3)  
+  - `testing/performance/` (K6 load tests)
+- **Tools:** Grafana, Prometheus, Kiali, K6
+- **Guide:** [Level 4 README](../level-4/README.md)
 
 ---
 

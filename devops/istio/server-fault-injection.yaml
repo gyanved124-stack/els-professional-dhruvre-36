@@ -1,0 +1,55 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: server-fault-injection
+  namespace: devops-system  # Ensure this matches where your service is running
+spec:
+  hosts:
+  - server  # Matches the Service name
+  http:
+  # 500 Fault (15%)
+  - match:
+    - headers:
+        x-test-scenario:
+          exact: "500"
+    fault:
+      abort:
+        httpStatus: 500
+        percentage:
+          value: 100
+    route:
+    - destination:
+        host: server
+
+  # 404 Fault (15%)
+  - match:
+    - headers:
+        x-test-scenario:
+          exact: "404"
+    fault:
+      abort:
+        httpStatus: 404
+        percentage:
+          value: 100
+    route:
+    - destination:
+        host: server
+
+  # 400 Fault (10%)
+  - match:
+    - headers:
+        x-test-scenario:
+          exact: "400"
+    fault:
+      abort:
+        httpStatus: 400
+        percentage:
+          value: 100
+    route:
+    - destination:
+        host: server
+
+  # Normal traffic (60%)
+  - route:
+    - destination:
+        host: server

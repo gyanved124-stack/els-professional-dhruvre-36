@@ -1,6 +1,6 @@
 apiVersion: v2
-name: postgres
-description: PostgreSQL database chart
+name: els-postgres
+description: PostgreSQL Database for Level 3+ ELS System
 type: application
 version: 1.0.0
 appVersion: "14"

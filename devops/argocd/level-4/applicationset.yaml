@@ -19,7 +19,7 @@ spec:
       project: default
       
       source:
-        repoURL: https://github.com/gyanved124-stack/els-professional-dhruvre-36.git  # ⚠️ UPDATE THIS
+        repoURL: https://github.com/gyanved124-stack/els-professional-dhruvre-36.git  #⚠️ UPDATE THIS
         targetRevision: HEAD
         path: devops/helm
         

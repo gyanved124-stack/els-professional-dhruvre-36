@@ -20,7 +20,7 @@ spec:
       
       source:
         repoURL: https://github.com/gyanved124-stack/els-professional-dhruvre-36.git  #⚠️ UPDATE THIS
-        targetRevision: HEAD
+        targetRevision: main
         path: devops/helm
         
         helm:

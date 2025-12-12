@@ -24,11 +24,7 @@ resources:
 image:
   repository: dhruvre/devops-server # DOCKER_USERNAME/devops-server
   pullPolicy: IfNotPresent
-<<<<<<< HEAD
-  tag: "v0.8.2" # IMAGE_TAG
-=======
   tag: "v0.7.5" # IMAGE_TAG
->>>>>>> 50209f5 (fix: fixed argo cd ymal)
 
 service:
   type: NodePort
@@ -67,9 +63,9 @@ env:
   ABLY_API_KEY: "CAtV_w.YQ2YJA:CFTY08KNi__TxbRH5bTjFRgjWPUjYwj8mCLFNtccCeA"
   
   # PostgreSQL Database Configuration
-  # These values match the postgres chart in devops/helm/postgres/
+  # Using FQDN for reliable service discovery
   DATABASE_CLIENT: postgres
-  DATABASE_HOST: els-postgres
+  DATABASE_HOST: postgres.els-devops-system.svc.cluster.local
   DATABASE_PORT: "5432"
   DATABASE_NAME: strapi
   DATABASE_USERNAME: strapi

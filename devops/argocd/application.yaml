@@ -8,9 +8,9 @@ spec:
   
   # Source: Your Helm chart
   source:
-    repoURL: https://github.com/YOUR_USERNAME/YOUR_REPO.git  # TODO: Update this
+    repoURL: https://github.com/gyanved124-stack/els-professional-dhruvre-36.git  # TODO: Update this
     targetRevision: main  # or your default branch
-    path: devops-system/devops/helm  # Path to your helm chart
+    path: devops/helm  # Path to your helm chart
     
     # No hardcoded values! 
     # CI/CD pipeline updates the values.yaml and Chart.yaml in the repo

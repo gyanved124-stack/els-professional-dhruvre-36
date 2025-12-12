@@ -10,11 +10,11 @@ config:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 80
   targetPort: 80
-
-ingress:
+  nodePort: 30001
+  nameOverride: els-client
   enabled: true
   className: "nginx"
   annotations: {}

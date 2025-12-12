@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: els-devops-system
+  namespace: argocd
+spec:
+  project: default
+  
+  # Source: Your Helm chart
+  source:
+    repoURL: https://github.com/YOUR_USERNAME/YOUR_REPO.git  # TODO: Update this
+    targetRevision: main  # or your default branch
+    path: devops-system/devops/helm  # Path to your helm chart
+    
+    # No hardcoded values! 
+    # CI/CD pipeline updates the values.yaml and Chart.yaml in the repo
+    # ArgoCD will automatically deploy the latest from Git
+  
+  # Destination: Where to deploy
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: els-devops-system
+  
+  # Sync policy: Automatic deployment
+  syncPolicy:
+    automated:
+      prune: true      # Remove resources when removed from Git
+      selfHeal: true   # Auto-sync if cluster state differs
+    syncOptions:
+      - CreateNamespace=true  # Auto-create namespace

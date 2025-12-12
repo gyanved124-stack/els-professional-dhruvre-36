@@ -23,7 +23,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ $.Chart.Name }}
+                name: {{ $.Chart.Name }}-service
                 port:
                   number: {{ $.Values.service.port }}
         {{- end }}

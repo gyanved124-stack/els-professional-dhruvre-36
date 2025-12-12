@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: els-postgres
+  name: {{ .Chart.Name }}
   labels:
-    app: els-postgres
+    app: {{ .Chart.Name }}
 spec:
   type: {{ .Values.service.type }}
   ports:
   - port: {{ .Values.service.port }}
     targetPort: 5432
   selector:
-    app: els-postgres
+    app: {{ .Chart.Name }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: els-postgres-pvc
+  name: {{ .Chart.Name }}-pvc
 spec:
   accessModes:
     - {{ .Values.storage.accessMode }}

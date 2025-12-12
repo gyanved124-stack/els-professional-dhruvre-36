@@ -1,37 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: els-postgres
+  name: {{ .Chart.Name }}
   labels:
-    app: els-postgres
+    app: {{ .Chart.Name }}
 spec:
-  strategy:
-    type: Recreate
   revisionHistoryLimit: 5  # Keep only last 5 ReplicaSets
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: els-postgres
+      app: {{ .Chart.Name }}
   template:
     metadata:
       labels:
-        app: els-postgres
+        app: {{ .Chart.Name }}
     spec:
       containers:
-      - name: postgres
+      - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
-        {{- range $key, $value := .Values.env }}
-        - name: {{ $key }}
-          value: {{ $value | quote }}
-        {{- end }}
+        - name: POSTGRES_DB
+          value: "{{ .Values.env.POSTGRES_DB }}"
+        - name: POSTGRES_PASSWORD
+          value: "{{ .Values.env.POSTGRES_PASSWORD }}"
+        - name: POSTGRES_USER
+          value: "{{ .Values.env.POSTGRES_USER }}"
         ports:
         - containerPort: 5432
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
-          name: els-postgres
+          name: postgres-data
       volumes:
-      - name: els-postgres
+      - name: postgres-data
         persistentVolumeClaim:
-          claimName: els-postgres-pvc
+          claimName: {{ .Chart.Name }}-pvc

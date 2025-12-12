@@ -1,5 +1,4 @@
 replicaCount: 1
-fullnameOverride: els-postgres
 
 image:
   repository: postgres

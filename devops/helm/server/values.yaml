@@ -24,7 +24,7 @@ resources:
 image:
   repository: dhruvre/devops-server # DOCKER_USERNAME/devops-server
   pullPolicy: IfNotPresent
-  tag: "v0.8.4" # IMAGE_TAG
+  tag: "v0.8.5" # IMAGE_TAG
 
 fullnameOverride: els-server
 

@@ -116,19 +116,33 @@ jobs:
     # Update Helm Chart Values
     - name: Update Helm Chart Values
       run: |
-        # Update client values
-        sed -i "s|repository:.*# DOCKER_USERNAME|repository: $DOCKER_USERNAME/devops-client # DOCKER_USERNAME|g" devops/helm/client/values.yaml
-        sed -i "s|tag:.*# IMAGE_TAG|tag: \"${{ steps.version.outputs.image_tag }}\" # IMAGE_TAG|g" devops/helm/client/values.yaml
+        # Update umbrella values.yaml (Targeting both client and server sections)
+        # Note: We use the markers # DOCKER_USERNAME and # IMAGE_TAG to be safe
         
-        # Update server values
-        sed -i "s|repository:.*# DOCKER_USERNAME|repository: $DOCKER_USERNAME/devops-server # DOCKER_USERNAME|g" devops/helm/server/values.yaml
-        sed -i "s|tag:.*# IMAGE_TAG|tag: \"${{ steps.version.outputs.image_tag }}\" # IMAGE_TAG|g" devops/helm/server/values.yaml
+        sed -i "s|repository:.*# DOCKER_USERNAME|repository: $DOCKER_USERNAME/devops-client # DOCKER_USERNAME|g" devops/helm/values.yaml
+        sed -i "s|tag:.*# IMAGE_TAG|tag: \"${{ steps.version.outputs.image_tag }}\" # IMAGE_TAG|g" devops/helm/values.yaml
+        
+        # We also update server repository specifically if needed, but the above generic one might catch both if not careful.
+        # Actually, since both have # DOCKER_USERNAME, we need to be careful.
+        # Let's use more specific sed ranges or just trust that they use specific repo names in the replacement.
+        # But wait, the replacement string is hardcoded. 
+        # Correct approach:
+        
+        # Update Client Section
+        # We assume the file structure allows us to replace globally for IMAGE_TAG as they share the version in this pipeline.
+        # For repository, we have different names.
+        
+        # Replace Client Repository
+        sed -i "s|repository:.*devops-client.*# DOCKER_USERNAME|repository: $DOCKER_USERNAME/devops-client # DOCKER_USERNAME|g" devops/helm/values.yaml
+        
+        # Replace Server Repository
+        sed -i "s|repository:.*devops-server.*# DOCKER_USERNAME|repository: $DOCKER_USERNAME/devops-server # DOCKER_USERNAME|g" devops/helm/values.yaml
+        
+        # Update Image Tags (Applied to both as they share the versioning strategy in this pipeline)
+        sed -i "s|tag:.*# IMAGE_TAG|tag: \"${{ steps.version.outputs.image_tag }}\" # IMAGE_TAG|g" devops/helm/values.yaml
         
         echo "Updated Helm values:"
-        echo "Client:"
-        grep -A 2 "image:" devops/helm/client/values.yaml
-        echo "Server:"
-        grep -A 2 "image:" devops/helm/server/values.yaml
+        cat devops/helm/values.yaml
 
     # Create GitHub Release for Main Branch
     - name: Create GitHub Release
@@ -198,7 +212,7 @@ jobs:
     # Commit and Push Updated Charts (Skip CI to prevent loop)
     - name: Commit Chart Changes
       run: |
-        git add devops/helm/*/values.yaml
+        git add devops/helm/values.yaml
         git diff --staged --quiet || git commit -m "Update Helm chart image tags to ${{ steps.version.outputs.image_tag }} [skip ci]" \
           && git push
 

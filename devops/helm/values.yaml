@@ -5,9 +5,9 @@
 client:
   replicaCount: 1
   image:
-    repository: dhruvre/devops-client #DOCKER_USERNAME
+    repository: dhruvre/devops-client # DOCKER_USERNAME
     pullPolicy: Always
-    tag: "latest"
+    tag: "latest" # IMAGE_TAG
   service:
     nameOverride: els-client
   config:
@@ -25,9 +25,9 @@ server:
   monitoring:
     enabled: true
   image:
-    repository: a/devops-server #DOCKER_USERNAME
+    repository: dhruvre/devops-server # DOCKER_USERNAME
     pullPolicy: IfNotPresent
-    tag: "v0.7.5"
+    tag: "v0.7.5" # IMAGE_TAG
   env:
     DATABASE_HOST: els-postgres.els-devops-system.svc.cluster.local
 

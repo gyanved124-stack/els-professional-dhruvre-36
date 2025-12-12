@@ -29,18 +29,6 @@ spec:
               value: '{{replicas}}'
             - name: environment
               value: '{{env}}'
-            - name: els-client.ingress.hosts[0].host
-              value: '{{env}}-els-client.local'
-            - name: els-client.ingress.hosts[0].paths[0].path
-              value: '/'
-            - name: els-client.ingress.hosts[0].paths[0].pathType
-              value: 'Prefix'
-            - name: els-server.ingress.hosts[0].host
-              value: '{{env}}-els-server.local'
-            - name: els-server.ingress.hosts[0].paths[0].path
-              value: '/'
-            - name: els-server.ingress.hosts[0].paths[0].pathType
-              value: 'Prefix'
       
       destination:
         server: https://kubernetes.default.svc

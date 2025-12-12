@@ -34,7 +34,7 @@ els-server:
   monitoring:
     enabled: true
   image:
-    repository: dhruvre/devops-client # DOCKER_USERNAME
+    repository: dhruvre/devops-server # DOCKER_USERNAME
     pullPolicy: Always
     tag: "v0.8.8" # IMAGE_TAG
   env:

@@ -119,8 +119,9 @@ jobs:
         # Update umbrella values.yaml (Targeting both client and server sections)
         # Note: We use the markers # DOCKER_USERNAME and # IMAGE_TAG to be safe
         
-        sed -i "s|repository:.*# DOCKER_USERNAME|repository: $DOCKER_USERNAME/devops-client # DOCKER_USERNAME|g" devops/helm/values.yaml
-        sed -i "s|tag:.*# IMAGE_TAG|tag: \"${{ steps.version.outputs.image_tag }}\" # IMAGE_TAG|g" devops/helm/values.yaml
+        # Update umbrella values.yaml (Targeting both client and server sections)
+        # Note: We use the markers # DOCKER_USERNAME and # IMAGE_TAG to be safe
+
         
         # We also update server repository specifically if needed, but the above generic one might catch both if not careful.
         # Actually, since both have # DOCKER_USERNAME, we need to be careful.

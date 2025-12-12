@@ -2,7 +2,7 @@
 # Override values for subcharts below
 
 # Client configuration
-client:
+els-client:
   replicaCount: 1
   image:
     repository: dhruvre/devops-client # DOCKER_USERNAME
@@ -12,9 +12,18 @@ client:
     nameOverride: els-client
   config:
     apiUrl: "http://els-server.local/api"
+  ingress:
+    enabled: true
+    className: "nginx"
+    annotations: {}
+    hosts:
+      - host: els-client.local
+        paths:
+          - path: /
+            pathType: Prefix
 
 # Server configuration  
-server:
+els-server:
   replicaCount: 1
   fullnameOverride: els-server
   autoscaling:
@@ -25,14 +34,14 @@ server:
   monitoring:
     enabled: true
   image:
-    repository: dhruvre/devops-client # DOCKER_USERNAME
-    pullPolicy: IfNotPresent
+    repository: dhruvre/devops-server # DOCKER_USERNAME
+    pullPolicy: Always
     tag: "v0.8.7" # IMAGE_TAG
   env:
     DATABASE_HOST: els-postgres.els-devops-system.svc.cluster.local
 
 # Postgres configuration
-postgres:
+els-postgres:
   replicaCount: 1
   service:
     nameOverride: els-postgres

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ .Values.service.nameOverride | default .Chart.Name }}
   labels:
     app: {{ .Chart.Name }}
 spec:

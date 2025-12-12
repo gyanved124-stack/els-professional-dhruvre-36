@@ -2,18 +2,21 @@
 # Override values for subcharts below
 
 # Client configuration
-els-client:
+client:
   replicaCount: 1
   image:
     repository: dhruvre/devops-client #DOCKER_USERNAME
     pullPolicy: Always
     tag: "latest"
+  service:
+    nameOverride: els-client
   config:
     apiUrl: "http://els-server.local/api"
 
 # Server configuration  
-els-server:
+server:
   replicaCount: 1
+  fullnameOverride: els-server
   autoscaling:
     enabled: true
     minReplicas: 1
@@ -26,11 +29,13 @@ els-server:
     pullPolicy: IfNotPresent
     tag: "v0.7.5"
   env:
-    DATABASE_HOST: postgres.els-devops-system.svc.cluster.local
+    DATABASE_HOST: els-postgres.els-devops-system.svc.cluster.local
 
 # Postgres configuration
-els-postgres:
+postgres:
   replicaCount: 1
+  service:
+    nameOverride: els-postgres
   image:
     repository: postgres
     pullPolicy: IfNotPresent

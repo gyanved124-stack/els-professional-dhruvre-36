@@ -10,7 +10,7 @@ autoscaling:
 
 # Monitoring configuration for Prometheus integration
 monitoring:
-  enabled: true
+  enabled: false
   metricsPath: /metrics
   scrapeInterval: 30s
 

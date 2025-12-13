@@ -32,16 +32,16 @@ spec:
               path: /_health
               port: http
             initialDelaySeconds: 180
-            periodSeconds: 10
-            timeoutSeconds: 5     
-            failureThreshold: 3
+            periodSeconds: 20
+            timeoutSeconds: 30     
+            failureThreshold: 10
           readinessProbe:
             httpGet:
               path: /_health
               port: http
             initialDelaySeconds: 150
-            timeoutSeconds: 5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-            failureThreshold: 3
+            timeoutSeconds: 30                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+            failureThreshold: 10
           env:
             {{- range $key, $value := .Values.env }}
             - name: {{ $key }}

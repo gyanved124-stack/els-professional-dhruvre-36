@@ -13,7 +13,7 @@ spec:
   
   destination:
     server: https://kubernetes.default.svc
-    namespace: els-devops-system
+    namespace: els-devops-system-level-3
   
   syncPolicy:
     automated:

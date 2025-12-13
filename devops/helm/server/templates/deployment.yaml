@@ -31,7 +31,7 @@ spec:
             httpGet:
               path: /_health
               port: http
-            initialDelaySeconds: 120
+            initialDelaySeconds: 180
             periodSeconds: 10
             timeoutSeconds: 5     
             failureThreshold: 3
@@ -39,8 +39,7 @@ spec:
             httpGet:
               path: /_health
               port: http
-            initialDelaySeconds: 90
-            periodSeconds: 10
+            initialDelaySeconds: 150
             timeoutSeconds: 5                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
             failureThreshold: 3
           env:

@@ -3,38 +3,41 @@
 
 # Client configuration
 els-client:
+  fullnameOverride: els-client-level-3
   image:
     repository: dhruvre/devops-client
     pullPolicy: Always
     tag: "v0.8.13" # IMAGE_TAG
   service:
-    nameOverride: els-client
+    nameOverride: els-client-level-3
   config:
-    apiUrl: "http://els-server.local/api"
+    apiUrl: "http://els-server-level-3.local/api"
   ingress:
     hosts:
-      - host: els-client.local
+      - host: els-client-level-3.local
         paths:
           - path: /
             pathType: Prefix
 
 # Server configuration
 els-server:
+  fullnameOverride: els-server-level-3
   image:
     repository: dhruvre/devops-server
     pullPolicy: Always
     tag: "v0.8.13" # IMAGE_TAG
   env:
-    DATABASE_HOST: els-postgres.els-devops-system.svc.cluster.local
+    DATABASE_HOST: els-postgres-level-3.els-devops-system-level-3.svc.cluster.local
   ingress:
     hosts:
-      - host: els-server.local
+      - host: els-server-level-3.local
         paths:
           - path: /
             pathType: Prefix
 
 # Postgres configuration
 els-postgres:
+  fullnameOverride: els-postgres-level-3
   image:
     repository: postgres
     tag: "14-alpine"

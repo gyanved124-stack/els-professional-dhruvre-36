@@ -1,21 +1,27 @@
-# Base
-FROM node:18-alpine
+FROM node:20-bullseye
 
-# Set working directory
+RUN apt-get update && apt-get install -y \
+    python3 \
+    build-essential \
+    make \
+    g++ \
+    libvips-dev \
+    libpng-dev \
+    zlib1g-dev \
+    nasm \
+    bash \
+  && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /opt/app
 
-# Copy package files
-COPY package*.json ./
+COPY package.json package-lock.json* ./
 RUN npm install
 
-# Copy app files
 COPY . .
 
-# Build admin panel
-RUN npm run build
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
 
-# Expose port
 EXPOSE 1337
 
-# Start
-CMD ["npm", "run", "develop"]
+ENTRYPOINT ["./entrypoint.sh"]

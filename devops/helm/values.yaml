@@ -7,7 +7,7 @@ els-client:
   image:
     repository: dhruvre/devops-client # DOCKER_USERNAME
     pullPolicy: Always
-    tag: "v0.8.12" # IMAGE_TAG
+    tag: "v0.8.13" # IMAGE_TAG
   service:
     nameOverride: els-client
   config:
@@ -36,7 +36,7 @@ els-server:
   image:
     repository: dhruvre/devops-server # DOCKER_USERNAME
     pullPolicy: Always
-    tag: "v0.8.12" # IMAGE_TAG
+    tag: "v0.8.13" # IMAGE_TAG
   env:
     DATABASE_HOST: els-postgres.els-devops-system.svc.cluster.local
 

@@ -17,4 +17,3 @@ storage:
 service:
   type: ClusterIP
   port: 5432
-  nameOverride: els-postgres

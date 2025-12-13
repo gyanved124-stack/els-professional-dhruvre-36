@@ -1,21 +1,21 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.service.nameOverride | default .Chart.Name }}
+  name: postgres
   labels:
-    app: {{ .Values.service.nameOverride | default .Chart.Name }}
+    app: postgres
 spec:
   type: {{ .Values.service.type }}
   ports:
   - port: {{ .Values.service.port }}
     targetPort: 5432
   selector:
-    app: {{ .Chart.Name }}
+    app: postgres
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Chart.Name }}-pvc
+  name: postgres-pvc
 spec:
   accessModes:
     - {{ .Values.storage.accessMode }}

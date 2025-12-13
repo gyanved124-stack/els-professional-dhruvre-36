@@ -99,7 +99,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"devops-system\"}[5m])) by (pod)",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"els-devops-system\"}[5m])) by (pod)",
           "interval": "",
           "legendFormat": "{{pod}}",
           "refId": "A"
@@ -182,7 +182,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(container_memory_usage_bytes{namespace=\"devops-system\"}[5m])) by (pod)",
+          "expr": "sum(rate(container_memory_usage_bytes{namespace=\"els-devops-system\"}[5m])) by (pod)",
           "interval": "",
           "legendFormat": "{{pod}}",
           "refId": "A"
@@ -265,7 +265,7 @@
       "targets": [
          {
           "exemplar": true,
-          "expr": "sum(rate(istio_requests_total{reporter=\"source\", destination_service_namespace=\"devops-system\"}[1m])) by (destination_service_name)",
+          "expr": "sum(rate(istio_requests_total{reporter=\"source\", destination_service_namespace=\"els-devops-system\"}[1m])) by (destination_service_name)",
           "interval": "",
           "legendFormat": "{{destination_service_name}}",
           "refId": "A"

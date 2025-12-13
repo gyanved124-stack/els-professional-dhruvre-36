@@ -2,5 +2,5 @@ apiVersion: v2
 name: els-postgres
 description: PostgreSQL database chart
 type: application
-version: 1.0.1
+version: 1.0.0
 appVersion: "14"

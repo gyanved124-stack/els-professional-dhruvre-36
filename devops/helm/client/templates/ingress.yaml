@@ -13,7 +13,6 @@ spec:
   {{- if .Values.ingress.className }}
   ingressClassName: {{ .Values.ingress.className }}
   {{- end }}
-{{- $svcName := .Values.service.nameOverride | default .Chart.Name }}
   rules:
   {{- range .Values.ingress.hosts }}
     - host: {{ .host | quote }}
@@ -24,7 +23,7 @@ spec:
             pathType: {{ .pathType }}
             backend:
               service:
-                name: {{ $svcName }}
+                name: {{ $.Chart.Name }}-service
                 port:
                   number: {{ $.Values.service.port }}
         {{- end }}

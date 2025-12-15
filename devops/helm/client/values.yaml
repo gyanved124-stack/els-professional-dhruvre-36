@@ -6,7 +6,7 @@ image:
   tag: "v0.8.15" # IMAGE_TAG
 
 config:
-  apiUrl: "http://els-server.local/api" # Update with Minikube IP
+  apiUrl: "http://els-server-level-3.local/api" # Update with Minikube IP
   pullPolicy: IfNotPresent
 
 service:
@@ -19,12 +19,12 @@ ingress:
   className: "nginx"
   annotations: {}
   hosts:
-    - host: els-client.local
+    - host: els-client-level-3.local
       paths:
         - path: /
           pathType: Prefix
 
 # Server URL that will be passed to React app at build time
-serverUrl: "http://els-server.local"
+serverUrl: "http://els-server-level-3.local"
 
 env: {}

@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: dhruvre/devops-server # DOCKER_USERNAME/devops-server
   pullPolicy: Always
-  tag: "v0.8.17" # IMAGE_TAG
+  tag: "v0.8.18" # IMAGE_TAG
 
 service:
   type: NodePort

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ .Values.service.nameOverride | default .Chart.Name }}
   labels:
     app: {{ .Chart.Name }}
 spec:
@@ -20,9 +20,8 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
-        - containerPort: {{ .Values.service.targetPort }}
         - name: http
-          containerPort: 80
+          containerPort: {{ .Values.service.targetPort }}
           protocol: TCP
         env:
         - name: VITE_API_URL
